@@ -1,29 +1,17 @@
 import axios from "axios";
 
-// Use the correct base URL for cart operations
-const CART_API_URL = "http://localhost:30082/back1/api/cart";
+const API_URL = "http://localhost:30082/back1/auth";
 
-export const addToCart = async (userId, productId) => {
-  return await axios.post(`${CART_API_URL}/add`, {
-    userId,
-    productId,
-    quantity: 1,
-  });
-};
-
-export const getCartItems = async (userId) => {
-  const response = await axios.get(`${CART_API_URL}/user/${userId}`);
+export const login = async (username, password) => {
+  const response = await axios.post(`${API_URL}/login`, { username, password });
+  localStorage.setItem("token", response.data);
   return response.data;
 };
 
-export const clearCart = async (userId) => {
-  return await axios.delete(`${CART_API_URL}/clear/${userId}`);
+export const signup = async (username, email, password) => {
+  return axios.post(`${API_URL}/sign`, { username, email, password });
 };
 
-export const removeCartItem = async (cartItemId) => {
-  try {
-    await axios.delete(`${CART_API_URL}/remove/${cartItemId}`);
-  } catch (error) {
-    console.error("Error removing item from cart", error);
-  }
+export const logout = () => {
+  localStorage.removeItem("token");
 };
