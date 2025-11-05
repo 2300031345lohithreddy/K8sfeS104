@@ -11,7 +11,7 @@ export const login = async (username, password) => {
 };
 
 export const signup = async (username, email, password) => {
-  // controller mapping is @PostMapping("/signup")
+  // ✅ Correct endpoint — matches @PostMapping("/signup")
   return axios.post(`${API_URL}/signup`, { username, email, password });
 };
 
