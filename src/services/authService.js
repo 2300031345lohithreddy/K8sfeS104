@@ -12,7 +12,7 @@ export const login = async (username, password) => {
 
 export const signup = async (username, email, password) => {
   // ✅ Correct endpoint — matches @PostMapping("/signup")
-  return axios.post(`${API_URL}/signup`, { username, email, password });
+  return axios.post(`${API_URL}/sign`, { username, email, password });
 };
 
 export const logout = () => {
