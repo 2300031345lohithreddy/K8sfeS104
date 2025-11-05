@@ -1,6 +1,8 @@
+// frontend/src/api/auth.js
 import axios from "axios";
 
-const API_URL = "http://localhost:30082/back1/auth";
+// use relative path — proxy will forward to backend in dev
+const API_URL = "/back1/auth";
 
 export const login = async (username, password) => {
   const response = await axios.post(`${API_URL}/login`, { username, password });
@@ -9,6 +11,7 @@ export const login = async (username, password) => {
 };
 
 export const signup = async (username, email, password) => {
+  // controller mapping is @PostMapping("/signup")
   return axios.post(`${API_URL}/signup`, { username, email, password });
 };
 
